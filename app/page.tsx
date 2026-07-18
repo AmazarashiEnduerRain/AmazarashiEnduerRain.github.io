@@ -1,3 +1,6 @@
+import { SiteFooter } from "./components/site-footer";
+import { SiteHeader } from "./components/site-header";
+
 const githubUrl = "https://github.com/AmazarashiEnduerRain";
 const email = "241880152@smail.nju.edu.cn";
 
@@ -22,17 +25,7 @@ const researchAreas = [
 export default function Home() {
   return (
     <div className="site-shell">
-      <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Back to top">
-          LW<span className="wordmark-dot">.</span>
-        </a>
-        <nav className="site-nav" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#research">Research</a>
-          <a href="#work">Work</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      <SiteHeader currentPage="home" />
 
       <main id="top" className="page-grid">
         <aside className="profile-column" aria-label="Profile">
@@ -146,10 +139,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="site-footer">
-        <p>© {new Date().getFullYear()} Liangxu Wei</p>
-        <p>Built for GitHub Pages</p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

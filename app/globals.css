@@ -70,12 +70,25 @@ a {
 }
 
 .site-nav a {
+  position: relative;
+  padding: 8px 0;
   transition: color 160ms ease;
 }
 
 .site-nav a:hover,
-.site-nav a:focus-visible {
+.site-nav a:focus-visible,
+.site-nav a.active {
   color: var(--accent);
+}
+
+.site-nav a.active::after {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  height: 1px;
+  background: var(--accent);
+  content: "";
 }
 
 .page-grid {
@@ -348,6 +361,152 @@ a {
   font-size: 12px;
 }
 
+.collection-page {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 78px 0 110px;
+}
+
+.collection-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr);
+  gap: 82px;
+  align-items: end;
+  padding: 10px 0 88px;
+}
+
+.collection-hero h1 {
+  max-width: 790px;
+  margin: 19px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+}
+
+.collection-hero h1 span {
+  color: var(--muted);
+}
+
+.collection-intro {
+  margin: 0;
+  color: #3f4441;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.collection-section {
+  padding: 54px 0 68px;
+  border-top: 1px solid var(--line);
+}
+
+.empty-collection {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  min-height: 265px;
+  padding: 42px;
+  background: var(--paper-deep);
+  border-left: 3px solid var(--accent);
+}
+
+.empty-number {
+  color: var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 31px;
+}
+
+.empty-collection h2 {
+  max-width: 680px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(31px, 4vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+}
+
+.empty-collection p {
+  max-width: 600px;
+  margin: 25px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.collection-guide {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(203, 201, 192, 0.75);
+  border-bottom: 1px solid rgba(203, 201, 192, 0.75);
+}
+
+.collection-guide article {
+  min-height: 245px;
+  padding: 28px 30px 32px 0;
+}
+
+.collection-guide article + article {
+  padding-left: 30px;
+  border-left: 1px solid rgba(203, 201, 192, 0.75);
+}
+
+.collection-guide h2 {
+  margin: 34px 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.collection-guide p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.68;
+}
+
+.collection-quote {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 30px;
+  margin-top: 6px;
+  padding: 55px 58px;
+  background: var(--accent);
+  color: #f8f7f3;
+}
+
+.collection-quote .section-label {
+  color: #b9d4c9;
+}
+
+.collection-quote > p:last-child {
+  max-width: 720px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 3.2vw, 38px);
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.music-hero .section-label,
+.music-empty .empty-number {
+  color: #74502c;
+}
+
+.music-empty {
+  border-left-color: #74502c;
+}
+
+.music-quote {
+  background: #433e38;
+}
+
+.music-quote .section-label {
+  color: #d9c4ab;
+}
+
 @media (max-width: 900px) {
   .site-shell {
     padding: 0 24px;
@@ -368,6 +527,34 @@ a {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+
+  .collection-hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .collection-intro {
+    max-width: 680px;
+  }
+
+  .collection-guide {
+    grid-template-columns: 1fr;
+  }
+
+  .collection-guide article {
+    min-height: auto;
+    padding: 26px 0;
+  }
+
+  .collection-guide article + article {
+    padding-left: 0;
+    border-top: 1px solid rgba(203, 201, 192, 0.75);
+    border-left: 0;
+  }
+
+  .collection-guide h2 {
+    margin-top: 18px;
+  }
 }
 
 @media (max-width: 680px) {
@@ -380,8 +567,8 @@ a {
   }
 
   .site-nav {
-    gap: 15px;
-    font-size: 11px;
+    gap: 18px;
+    font-size: 12px;
   }
 
   .page-grid {
@@ -439,6 +626,48 @@ a {
   .email-link {
     font-size: 13px;
     overflow-wrap: anywhere;
+  }
+
+  .collection-page {
+    padding: 46px 0 72px;
+  }
+
+  .collection-hero {
+    padding: 4px 0 60px;
+  }
+
+  .collection-hero h1 {
+    font-size: 46px;
+  }
+
+  .empty-collection {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    min-height: 0;
+    padding: 30px 26px 36px;
+  }
+
+  .empty-collection h2 {
+    font-size: 34px;
+  }
+
+  .collection-quote {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-right: -18px;
+    margin-left: -18px;
+    padding: 46px 24px;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+  }
+
+  .site-footer p {
+    margin: 0;
   }
 }
 

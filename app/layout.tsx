@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s — Liangxu Wei",
   },
   description:
-    "The academic homepage of Liangxu Wei: research interests, selected work, education, and contact information.",
+    "The personal homepage of Liangxu Wei: research, selected work, books, music, and contact information.",
   authors: [{ name: "Liangxu Wei" }],
   alternates: { canonical: "/" },
   icons: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "/",
     title: "Liangxu Wei — Academic Homepage",
     description:
-      "Research interests, selected work, education, and contact information.",
+      "Research, selected work, books, music, and contact information.",
     images: [
       {
         url: "/og.jpg",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Liangxu Wei — Academic Homepage",
     description:
-      "Research interests, selected work, education, and contact information.",
+      "Research, selected work, books, music, and contact information.",
     images: ["/og.jpg"],
   },
 };
