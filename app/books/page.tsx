@@ -5,32 +5,78 @@ import { SiteHeader } from "../components/site-header";
 export const metadata: Metadata = {
   title: "Books",
   description:
-    "A personal reading shelf: books, authors, and brief notes from Liangxu Wei.",
+    "A personal reading shelf, organized by author, with books and reading notes from Liangxu Wei.",
   alternates: { canonical: "/books/" },
   openGraph: {
     title: "Books — Liangxu Wei",
-    description: "Books, authors, and brief notes from a personal reading shelf.",
+    description:
+      "Authors, books, reading notes, and recommendations from a personal library.",
     url: "/books/",
   },
 };
 
-const shelfGuide = [
+const authors = [
   {
     index: "01",
-    title: "The book",
-    text: "Each entry will begin with the title, author, original language, and publication year.",
+    name: "Gabriel García Márquez",
+    nativeName: "加西亚·马尔克斯",
+    works: [
+      {
+        title: "One Hundred Years of Solitude",
+        meta: "Novel · 1967",
+        note: "Reading note forthcoming.",
+      },
+      {
+        title: "Love in the Time of Cholera",
+        meta: "Novel · 1985",
+        note: "Reading note forthcoming.",
+      },
+    ],
   },
   {
     index: "02",
-    title: "Why it stays",
-    text: "A concise personal note will record the idea, scene, or voice that made the work memorable.",
+    name: "Julio Cortázar",
+    nativeName: "胡利奥·科塔萨尔",
+    works: [
+      {
+        title: "Hopscotch",
+        meta: "Novel · 1963",
+        note: "Reading note forthcoming.",
+      },
+      {
+        title: "Bestiary",
+        meta: "Short stories · 1951",
+        note: "Reading note forthcoming.",
+      },
+    ],
   },
   {
     index: "03",
-    title: "The author",
-    text: "Related works and a short reflection on the writer will connect individual books into a wider reading map.",
+    name: "Roberto Bolaño",
+    nativeName: "罗贝托·波拉尼奥",
+    works: [
+      {
+        title: "The Savage Detectives",
+        meta: "Novel · 1998",
+        note: "Reading note forthcoming.",
+      },
+      {
+        title: "2666",
+        meta: "Novel · 2004",
+        note: "Reading note forthcoming.",
+      },
+    ],
   },
 ];
+
+function RatingPlaceholder() {
+  return (
+    <div className="rating-placeholder" aria-label="Rating not added yet">
+      <span aria-hidden="true">○ ○ ○ ○ ○</span>
+      <small>Not rated yet</small>
+    </div>
+  );
+}
 
 export default function BooksPage() {
   return (
@@ -43,58 +89,77 @@ export default function BooksPage() {
             <p className="section-label">Personal library</p>
             <h1>
               Books I return to,
-              <span> and the writers behind them.</span>
+              <span> organized by author.</span>
             </h1>
           </div>
           <p className="collection-intro">
-            A growing reading notebook for books that have stayed with me.
-            Rather than a ranking, this page will collect brief, personal
-            reasons for remembering each work and its author.
+            Open an author to browse their books, then open a title for reading
+            notes and a personal recommendation. The shelf can grow without
+            losing the connections between works and writers.
           </p>
         </header>
 
         <section className="collection-section" aria-labelledby="reading-shelf">
-          <div className="section-heading-row">
+          <div className="section-heading-row archive-heading">
             <p className="section-label" id="reading-shelf">
-              Reading shelf
+              Authors &amp; books
             </p>
-            <p className="section-note">Entries forthcoming</p>
+            <p className="section-note">Select an author to explore</p>
           </div>
-          <div className="empty-collection">
-            <span className="empty-number">01—</span>
-            <div>
-              <h2>The first reading notes will appear here.</h2>
-              <p>
-                Book covers are deliberately secondary: every entry is designed
-                around the title, author, and a short note in my own words.
-              </p>
-            </div>
-          </div>
-        </section>
 
-        <section className="collection-section" aria-labelledby="entry-format">
-          <div className="section-heading-row">
-            <p className="section-label" id="entry-format">
-              Entry format
-            </p>
-            <p className="section-note">A small reading map</p>
-          </div>
-          <div className="collection-guide">
-            {shelfGuide.map((item) => (
-              <article key={item.index}>
-                <span className="item-index">{item.index}</span>
-                <h2>{item.title}</h2>
-                <p>{item.text}</p>
-              </article>
+          <div className="archive-list">
+            {authors.map((author) => (
+              <details className="creator-group" key={author.name}>
+                <summary className="creator-summary">
+                  <span className="creator-index">{author.index}</span>
+                  <span className="creator-name">
+                    <strong>{author.name}</strong>
+                    <small>{author.nativeName}</small>
+                  </span>
+                  <span className="creator-count">
+                    {author.works.length} books
+                  </span>
+                  <span className="details-toggle" aria-hidden="true" />
+                </summary>
+
+                <div className="works-list">
+                  {author.works.map((work, workIndex) => (
+                    <details className="work-entry" key={work.title}>
+                      <summary className="work-summary">
+                        <span className="work-index">
+                          {author.index}.{String(workIndex + 1).padStart(2, "0")}
+                        </span>
+                        <span className="work-title">
+                          <strong>{work.title}</strong>
+                          <small>{work.meta}</small>
+                        </span>
+                        <span className="work-action">Open note</span>
+                        <span className="details-toggle small" aria-hidden="true" />
+                      </summary>
+
+                      <div className="work-detail">
+                        <div>
+                          <p className="detail-label">Reading note</p>
+                          <p>{work.note}</p>
+                        </div>
+                        <div>
+                          <p className="detail-label">Recommendation</p>
+                          <RatingPlaceholder />
+                        </div>
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </details>
             ))}
           </div>
         </section>
 
         <aside className="collection-quote">
-          <p className="section-label">Reading note</p>
+          <p className="section-label">About this shelf</p>
           <p>
-            This page is ready for a first list of titles and authors. Each can
-            be expanded later without changing the overall structure.
+            Notes and ratings are intentionally left open until they can be
+            written in my own words.
           </p>
         </aside>
       </main>

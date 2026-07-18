@@ -5,33 +5,71 @@ import { SiteHeader } from "../components/site-header";
 export const metadata: Metadata = {
   title: "Music",
   description:
-    "A personal listening archive: music, artists, and brief notes from Liangxu Wei.",
+    "A personal listening archive, organized by artist, with music notes from Liangxu Wei.",
   alternates: { canonical: "/music/" },
   openGraph: {
     title: "Music — Liangxu Wei",
     description:
-      "Music, artists, and brief notes from a personal listening archive.",
+      "Artists, songs, listening notes, and personal ratings from a listening archive.",
     url: "/music/",
   },
 };
 
-const listeningGuide = [
+const artists = [
   {
     index: "01",
-    title: "The recording",
-    text: "Albums, songs, and performances can be recorded with their release year and listening context.",
+    name: "amazarashi",
+    nativeName: "アマザラシ",
+    works: [
+      {
+        title: "季節は次々死んでいく",
+        meta: "Single · 2015",
+        note: "Listening note forthcoming.",
+      },
+      {
+        title: "命にふさわしい",
+        meta: "Single · 2017",
+        note: "Listening note forthcoming.",
+      },
+      {
+        title: "空に歌えば",
+        meta: "Single · 2017",
+        note: "Listening note forthcoming.",
+      },
+    ],
   },
   {
     index: "02",
-    title: "Why it resonates",
-    text: "Each selection will include a short note about its sound, writing, atmosphere, or personal significance.",
-  },
-  {
-    index: "03",
-    title: "The artist",
-    text: "Related records and collaborators will make it possible to follow connections across the listening archive.",
+    name: "THE BLUE HEARTS",
+    nativeName: "ザ・ブルーハーツ",
+    works: [
+      {
+        title: "リンダ リンダ",
+        meta: "Single · 1987",
+        note: "Listening note forthcoming.",
+      },
+      {
+        title: "TRAIN-TRAIN",
+        meta: "Single · 1988",
+        note: "Listening note forthcoming.",
+      },
+      {
+        title: "情熱の薔薇",
+        meta: "Single · 1990",
+        note: "Listening note forthcoming.",
+      },
+    ],
   },
 ];
+
+function RatingPlaceholder() {
+  return (
+    <div className="rating-placeholder" aria-label="Rating not added yet">
+      <span aria-hidden="true">○ ○ ○ ○ ○</span>
+      <small>Not rated yet</small>
+    </div>
+  );
+}
 
 export default function MusicPage() {
   return (
@@ -44,58 +82,77 @@ export default function MusicPage() {
             <p className="section-label">Listening archive</p>
             <h1>
               Music I keep close,
-              <span> and the artists who made it.</span>
+              <span> organized by artist.</span>
             </h1>
           </div>
           <p className="collection-intro">
-            A personal index of records, songs, performances, and artists.
-            Selections will be accompanied by short notes about the moments,
-            sounds, and words that made them worth returning to.
+            Open an artist to browse songs and recordings, then open an entry
+            for listening notes and a personal rating. The archive keeps each
+            piece connected to the people who made it.
           </p>
         </header>
 
         <section className="collection-section" aria-labelledby="listening-list">
-          <div className="section-heading-row">
+          <div className="section-heading-row archive-heading">
             <p className="section-label" id="listening-list">
-              Listening list
+              Artists &amp; music
             </p>
-            <p className="section-note">Entries forthcoming</p>
+            <p className="section-note">Select an artist to explore</p>
           </div>
-          <div className="empty-collection music-empty">
-            <span className="empty-number">01—</span>
-            <div>
-              <h2>The first listening notes will appear here.</h2>
-              <p>
-                Each entry is designed to foreground the music and its creator,
-                with room for a concise personal response and listening links.
-              </p>
-            </div>
-          </div>
-        </section>
 
-        <section className="collection-section" aria-labelledby="listening-format">
-          <div className="section-heading-row">
-            <p className="section-label" id="listening-format">
-              Entry format
-            </p>
-            <p className="section-note">A connected listening map</p>
-          </div>
-          <div className="collection-guide">
-            {listeningGuide.map((item) => (
-              <article key={item.index}>
-                <span className="item-index">{item.index}</span>
-                <h2>{item.title}</h2>
-                <p>{item.text}</p>
-              </article>
+          <div className="archive-list music-archive">
+            {artists.map((artist) => (
+              <details className="creator-group" key={artist.name}>
+                <summary className="creator-summary">
+                  <span className="creator-index">{artist.index}</span>
+                  <span className="creator-name">
+                    <strong>{artist.name}</strong>
+                    <small>{artist.nativeName}</small>
+                  </span>
+                  <span className="creator-count">
+                    {artist.works.length} tracks
+                  </span>
+                  <span className="details-toggle" aria-hidden="true" />
+                </summary>
+
+                <div className="works-list">
+                  {artist.works.map((work, workIndex) => (
+                    <details className="work-entry" key={work.title}>
+                      <summary className="work-summary">
+                        <span className="work-index">
+                          {artist.index}.{String(workIndex + 1).padStart(2, "0")}
+                        </span>
+                        <span className="work-title">
+                          <strong>{work.title}</strong>
+                          <small>{work.meta}</small>
+                        </span>
+                        <span className="work-action">Open note</span>
+                        <span className="details-toggle small" aria-hidden="true" />
+                      </summary>
+
+                      <div className="work-detail">
+                        <div>
+                          <p className="detail-label">Listening note</p>
+                          <p>{work.note}</p>
+                        </div>
+                        <div>
+                          <p className="detail-label">Personal rating</p>
+                          <RatingPlaceholder />
+                        </div>
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </details>
             ))}
           </div>
         </section>
 
         <aside className="collection-quote music-quote">
-          <p className="section-label">Listening note</p>
+          <p className="section-label">About this archive</p>
           <p>
-            This page is ready for a first list of songs, albums, and artists.
-            Streaming and artist links can be added entry by entry.
+            Notes and ratings are intentionally left open until they can be
+            written in my own words.
           </p>
         </aside>
       </main>
