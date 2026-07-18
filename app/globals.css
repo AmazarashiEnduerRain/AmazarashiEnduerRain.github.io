@@ -574,9 +574,10 @@ a {
 }
 
 .creator-name strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Arial, "Microsoft YaHei", "Yu Gothic", Meiryo, sans-serif;
   font-size: clamp(25px, 3vw, 35px);
   font-weight: 500;
+  font-style: normal;
   letter-spacing: -0.03em;
   transition: color 160ms ease;
 }
@@ -653,9 +654,10 @@ details[open] > summary .details-toggle::after {
 }
 
 .work-title strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Arial, "Microsoft YaHei", "Yu Gothic", Meiryo, sans-serif;
   font-size: 21px;
   font-weight: 500;
+  font-style: normal;
   letter-spacing: -0.018em;
   transition: color 160ms ease;
 }

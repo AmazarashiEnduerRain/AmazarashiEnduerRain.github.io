@@ -15,22 +15,21 @@ export const metadata: Metadata = {
   },
 };
 
+const book = (title: string) => ({
+  title,
+  meta: "Book",
+  note: "Reading note forthcoming.",
+});
+
 const authors = [
   {
     index: "01",
-    name: "Gabriel García Márquez",
-    nativeName: "加西亚·马尔克斯",
+    name: "Roberto Bolaño",
+    nativeName: "罗贝托·波拉尼奥",
     works: [
-      {
-        title: "One Hundred Years of Solitude",
-        meta: "Novel · 1967",
-        note: "Reading note forthcoming.",
-      },
-      {
-        title: "Love in the Time of Cholera",
-        meta: "Novel · 1985",
-        note: "Reading note forthcoming.",
-      },
+      book("智利之夜"),
+      book("地球上最后的夜晚"),
+      book("2666"),
     ],
   },
   {
@@ -38,33 +37,33 @@ const authors = [
     name: "Julio Cortázar",
     nativeName: "胡利奥·科塔萨尔",
     works: [
-      {
-        title: "Hopscotch",
-        meta: "Novel · 1963",
-        note: "Reading note forthcoming.",
-      },
-      {
-        title: "Bestiary",
-        meta: "Short stories · 1951",
-        note: "Reading note forthcoming.",
-      },
+      book("游戏的终结"),
+      book("万火归一"),
+      book("动物寓言集"),
+      book("文学课"),
     ],
   },
   {
     index: "03",
-    name: "Roberto Bolaño",
-    nativeName: "罗贝托·波拉尼奥",
+    name: "Gabriel García Márquez",
+    nativeName: "加西亚·马尔克斯",
     works: [
-      {
-        title: "The Savage Detectives",
-        meta: "Novel · 1998",
-        note: "Reading note forthcoming.",
-      },
-      {
-        title: "2666",
-        meta: "Novel · 2004",
-        note: "Reading note forthcoming.",
-      },
+      book("百年孤独"),
+      book("族长的秋天"),
+      book("苦妓回忆录"),
+      book("活着为了写作"),
+      book("番石榴飘香"),
+      book("霍乱时期的爱情"),
+    ],
+  },
+  {
+    index: "04",
+    name: "William Faulkner",
+    nativeName: "威廉·福克纳",
+    works: [
+      book("我弥留之际"),
+      book("Light in August"),
+      book("喧哗与骚动"),
     ],
   },
 ];
